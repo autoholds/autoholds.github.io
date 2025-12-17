@@ -62,14 +62,14 @@ const musicInfo = document.getElementById('musicInfo');
 const playAudio = () => {
   audio.play();
   isPlaying = true;
-  musicInfo.textContent = 'Music: Perfection | Playing';
+  musicInfo.textContent = 'Music: Perfection | Status: Playing';
   updateMusicButtons();
 };
 
 const pauseAudio = () => {
   audio.pause();
   isPlaying = false;
-  musicInfo.textContent = 'Music: Perfection | Paused';
+  musicInfo.textContent = 'Music: Perfection | Status: Paused';
   updateMusicButtons();
 };
 
@@ -77,7 +77,7 @@ const stopAudio = () => {
   audio.pause();
   audio.currentTime = 0;
   isPlaying = false;
-  musicInfo.textContent = 'Music: Perfection | Stopped';
+  musicInfo.textContent = 'Music: Perfection | Status: Stopped';
   updateMusicButtons();
 };
 
@@ -142,12 +142,14 @@ document.addEventListener('keydown', (e) => {
 });
 
 const staticDenseBg = document.getElementById('staticDenseBg');
-const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+[]{}|;:,.<>?/~░▒▓';
+const chars = '0123456789!@#$%^&*';
+let charElements = [];
 
 function createStaticBackground() {
   staticDenseBg.innerHTML = '';
+  charElements = [];
 
-  const cellSize = 18;
+  const cellSize = 20;
   const cols = Math.ceil(window.innerWidth / cellSize);
   const rows = Math.ceil(window.innerHeight / cellSize);
   const totalCells = cols * rows;
@@ -158,48 +160,41 @@ function createStaticBackground() {
     charElement.textContent = chars[Math.floor(Math.random() * chars.length)];
 
     const colorType = Math.random();
-    if (colorType < 0.6) {
+    if (colorType < 0.7) {
       const brightness = 180 + Math.random() * 75;
       charElement.style.color = `rgb(${brightness}, ${brightness}, ${brightness})`;
-      charElement.style.opacity = (0.25 + Math.random() * 0.35).toString();
-    } else if (colorType < 0.85) {
-      charElement.style.color = `rgb(${200 + Math.random() * 55}, 50, 50)`;
-      charElement.style.opacity = (0.3 + Math.random() * 0.4).toString();
     } else {
-      charElement.style.color = `rgb(100, ${150 + Math.random() * 100}, 255)`;
-      charElement.style.opacity = (0.2 + Math.random() * 0.3).toString();
+      charElement.style.color = `rgb(${200 + Math.random() * 55}, 50, 50)`;
     }
 
     staticDenseBg.appendChild(charElement);
+    charElements.push(charElement);
   }
 }
 
+let updateCounter = 0;
 function updateRandomChars() {
-  const allChars = document.querySelectorAll('.static-char');
-  const updateCount = Math.floor(allChars.length * 0.02);
+  updateCounter++;
+  if (updateCounter < 3) return;
+  updateCounter = 0;
+
+  const updateCount = Math.max(1, Math.floor(charElements.length * 0.005));
 
   for (let i = 0; i < updateCount; i++) {
-    const randomIndex = Math.floor(Math.random() * allChars.length);
-    const charElement = allChars[randomIndex];
-    const oldChar = charElement.textContent;
-    let newChar = chars[Math.floor(Math.random() * chars.length)];
-    
-    while (newChar === oldChar) {
-      newChar = chars[Math.floor(Math.random() * chars.length)];
-    }
-    
-    charElement.textContent = newChar;
+    const randomIndex = Math.floor(Math.random() * charElements.length);
+    const charElement = charElements[randomIndex];
+    charElement.textContent = chars[Math.floor(Math.random() * chars.length)];
   }
 }
 
 createStaticBackground();
-const charUpdateInterval = setInterval(updateRandomChars, 600);
+window.addEventListener('scroll', updateRandomChars, { passive: true });
 
 let resizeTimeout;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(createStaticBackground, 250);
-});
+  resizeTimeout = setTimeout(createStaticBackground, 500);
+}, { passive: true });
 
 document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -223,8 +218,8 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('scroll', () => {
   const scrollTop = window.pageYOffset;
   const staticBg = document.getElementById('staticDenseBg');
-  staticBg.style.transform = `translateY(${scrollTop * 0.5}px)`;
-});
+  staticBg.style.transform = `translateY(${scrollTop * 0.3}px)`;
+}, { passive: true });
 
 document.addEventListener('mousemove', (e) => {
   const mouseX = e.clientX;
@@ -247,6 +242,5 @@ document.addEventListener('mousemove', (e) => {
 });
 
 window.addEventListener('beforeunload', () => {
-  clearInterval(charUpdateInterval);
   audio.pause();
 });
