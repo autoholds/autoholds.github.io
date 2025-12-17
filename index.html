@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <title>Reaper.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="icon" type="image/png" href="https://cdn.discordapp.com/icons/1433341836843286679/78b7dd80efdf571f4b15c566086bb6e9.webp?size=1024">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="music-player">
+    <div class="music-player-controls">
+      <button class="music-btn" id="playBtn">
+        <i class="fas fa-play"></i>
+      </button>
+      <button class="music-btn" id="pauseBtn">
+        <i class="fas fa-pause"></i>
+      </button>
+      <button class="music-btn" id="stopBtn">
+        <i class="fas fa-stop"></i>
+      </button>
+      <div class="volume-control">
+        <i class="fas fa-volume-up" style="color: #ef4444;"></i>
+        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.5">
+      </div>
+    </div>
+    <div class="music-info" id="musicInfo">
+      Music: Perfection | Status: Paused
+    </div>
+  </div>
+
+  <div class="static-dense-bg" id="staticDenseBg"></div>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <img id="modalImage" src="" alt="Enlarged Image">
+      <div class="modal-caption" id="modalCaption"></div>
+    </div>
+  </div>
+
+  <nav>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="logo">Reaper Botnet</div>
+      <div class="links">
+        <a href="#about">Overview</a>
+        <a href="#proof">Proof</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="content">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Reaper Botnet</h1>
+        <p>Advanced Control & Command</p>
+        <p>One of the largest BOTNET networks</p>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <h2 class="section-title">Framework Overview</h2>
+      <div class="section-content">
+        <p>
+          Reaper Botnet is a command-and-control framework used to operate a real-world botnet composed of compromised systems across platforms such as x86, Android, and Windows. It is designed to maintain centralized control over a large number of infected machines, enabling synchronized actions and continuous communication.
+        </p>
+        <br>
+        <p>
+          The framework is built with a scalable architecture that allows the botnet to grow and adapt over time. By maintaining direct control channels with infected nodes, Reaper Botnet ensures stability, coordination, and persistence across the network.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="proof">
+      <h2 class="section-title">Power Proof</h2>
+      <div class="proof-images">
+        <div class="proof-image">
+          <div class="image-placeholder">
+            <img src="midia/image.png" alt="FORTNITE" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+          </div>
+          <div class="image-caption">FORTNITE KILLED THE SERVER.</div>
+        </div>
+        
+        <div class="proof-image">
+          <div class="image-placeholder">
+            <img src="midia/image2.png" alt="OVH" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+          </div>
+          <div class="image-caption">OVH 30GB+.</div>
+        </div>
+        
+        <div class="proof-image">
+          <div class="image-placeholder">
+            <img src="midia/image3.png" alt="L7" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+          </div>
+          <div class="image-caption">L7 UP TO 1M RPS AND FULL BYPASS.</div>
+        </div>
+        
+        <div class="proof-image">
+          <div class="image-placeholder">
+            <img src="midia/image4.png" alt="SUBNET" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+          </div>
+          <div class="image-caption">FULLY SUBNET /24.</div>
+        </div>
+        
+        <div class="proof-image">
+          <div class="image-placeholder">
+            <img src="midia/image5.png" alt="HIGH GBPS" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+          </div>
+          <div class="image-caption">RAW UDP UP TO 700 GBPS.</div>
+        </div>
+        
+        <div class="proof-image">
+          <div class="image-placeholder">
+            <img src="midia/image6.jpg" alt="TLS METHOD" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+          </div>
+          <div class="image-caption">RAW TLS METHOD UP TO 4M RPS AND 1.2M ALLOWED.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <div class="section-content" style="text-align: center;">
+        <div class="contact-container">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fab fa-discord"></i>
+            </div>
+            <div class="contact-title">Discord</div>
+            <div class="contact-text">
+              Join our server for support and updates
+            </div>
+            <a href="https://discord.gg/r-5" class="contact-link" target="_blank">
+              <i class="fab fa-discord"></i> Join Server
+            </a>
+          </div>
+        </div>
+        
+        <div class="disclaimer">
+          Reaper Botnet is Stronger With You.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2025 Reaper Botnet - All rights reserved</p>
+    <p style="margin-top: 10px; font-size: 12px; color: rgba(255,255,255,0.4);"></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
